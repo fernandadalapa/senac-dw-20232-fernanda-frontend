@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastro de Fabricante</title>
+        <script src="./js/cadastrar.fabricante.js"></script>
+        <link rel="stylesheet" href="../../css/estilo.css">
+    </head>
+    <body>
+        <header class="cabecalho">
+            <h1 class="cabecalho__titulo">Cadastro de Fabricante</h1>
+            <p class="cabecalho__texto">Informe os dados do fabricante</p>
+        </header>
+        <main class="principal">
+
+            </section>
+    
+            <section class="section__principal">
+                <form class="formulario" id="formulario">
+                    <div>
+                        <fieldset class="formulario__fieldset" id="fieldset-consulta-cep">
+                            <legend>Consulta de CEP</legend>
+                            <div>
+                                <label class="formulario__texto" for="cep">Informe o CEP: </label>
+                                <input class="formulario__fieldset__input__descricao" type="text" id="cep" name="cep" minlength="8" required/>
+                            </div>
+                            <div>
+                                <label class="formulario__texto"></label>
+                                <button class="formulario__fieldset__botao" type="button" onclick="buscarCEP()">Buscar CEP</button>    
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset class="formulario__fieldset">
+                            <legend>Endereço:</legend>
+                            <div>
+                                <label class="formulario__texto" for="nome">Nome:</label>
+                                <input class="formulario__fieldset__input__descricao" type="text" id="nome" name="nome" minlength="3" required/>    
+                            </div>
+
+                            <div>
+                                <label class="formulario__texto" for="cnpj">Cnpj:</label>
+                                <input class="formulario__fieldset__input__descricao" type="text" id="cnpj" name="cnpj" required/>    
+                            </div>
+
+                            <div>
+                                <label class="formulario__texto" for="cep">Cep:</label>
+                                <input class="formulario__fieldset__input__descricao" type="text" id="cep" name="cep" required/>    
+                            </div>
+        
+                            <div>
+                                <label class="formulario__texto" for="cidade">Cidade:</label>
+                                <input class="formulario__fieldset__input__descricao" type="text" id="cidade" name="cidade" required/>    
+                            </div>
+
+                            <div>
+                                <label class="formulario__texto" for="estado">Estado:</label>
+                                <input class="formulario__fieldset__input__descricao" type="text" id="estado" name="estado" required/>    
+                            </div>
+
+                            
+                            <div>
+                                <label class="formulario__texto"></label>
+                                <input class="formulario__fieldset__botao" id="botao" type="submit" value="Cadastrar"/>  
+                            </div>
+                        </fieldset>
+                    </div>                    
+                </form> 
+            </section>
+        </main>
+        <footer class="rodape">
+            <p class="rodape__texto">Obrigado por cadastrar o estepô.</p>
+        </footer>
+    </body>
+</html>

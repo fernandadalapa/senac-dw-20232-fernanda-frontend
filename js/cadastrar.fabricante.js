@@ -21,13 +21,13 @@ async function buscarCEP(){
 }
 
 function preencherCamposComJSON(json){
-    if(json.nome){ 
+    if(json.nome){
         nome.value = json.nome;
     }else{
         nome.disabled = false;
     }
 
-    if(json.cnpj){ 
+    if(json.cnpj){
         cnpj.value = json.cnpj;
     }else{
         cnpj.disabled = false;

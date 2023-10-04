@@ -1,7 +1,6 @@
-import { Fabricante } from './fabricante';
-
-export class Produto {
+export class Fabricante {
   id: number;
   nome: String;
+  cnpj: String;
 
 }

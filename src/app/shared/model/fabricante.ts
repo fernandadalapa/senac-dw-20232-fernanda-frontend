@@ -1,5 +1,6 @@
 export class Fabricante {
   id: number;
-  nome: string;
-  cnpj: string;
+  nome: String;
+  cnpj: String;
+
 }

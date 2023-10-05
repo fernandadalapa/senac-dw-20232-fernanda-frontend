@@ -1,71 +1,85 @@
-async function buscarCEP(){
-    limpar();
-    var cepInformado = document.getElementById('cep').value;
-    cepInformado = cepInformado.replace('-', '');
+async function buscarCep(){
+  let cepInformado = document.getElementById('txtCep').value;
 
-    var cepValido = validarCEP(cepInformado);
-    if(cepValido){
-        fetch(`https://viacep.com.br/ws/${cepInformado}/json/`)
-        .then(resultado => resultado.json())
-        .then(json => {
-            if(json.erro){
-                mostrarTelaErro();
-            }else{
-                preencherCamposComJSON(json);
-            }
-        })
-        .catch(erro => {
-            mostrarTelaErro();
-        })
-    }
+  fetch(`https://viacep.com.br/ws/${cepInformado}/json/`)
+  .then(resultado => resultado.json())
+  .then(json => {
+      document.getElementById('txtCidade').value = json.localidade;
+      document.getElementById('txtUf').value = json.uf;
+  });
 }
 
-function preencherCamposComJSON(json){
-    if(json.nome){
-        nome.value = json.nome;
-    }else{
-        nome.disabled = false;
-    }
+async function salvar(){
+  let json = {
+      nome: txtNome.value,
+      cnpj: txtCnpj.value,
+      cep: txtCep.value,
+      cidade: txtCidade.value,
+      uf: txtUf.value
+  };
 
-    if(json.cnpj){
-        cnpj.value = json.cnpj;
-    }else{
-        cnpj.disabled = false;
-    }
-
-    cep.value = json.localidade;
-    cep.value = true;
-    cidade.value = json.localidade;
-    estado.value = json.uf;
-    cidade.disabled = true;
-    estado.disabled = true;
+  fetch('http://localhost:8080/api/fabricantes', {
+      method: "POST",
+      body: JSON.stringify(json),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response => {
+      if(response.status == 500){
+          alert('Preencha todos os campos');
+      }
+      response.json();
+  } )
+  .then(json => {
+      alert("Fabricante salvo com sucesso");
+      limparFormulario();
+  });
 }
 
-function limpar(){
-    formulario.style = 'background-color: blue';
-    nome.value = '';
-    cnpj.value = '';
-
-    cep.disabled = true;
-    cidade.disabled = true;
-    estado.disabled = true;
+function limparFormulario(){
+  txtNome.value = '';
+  txtCnpj.value = '';
+  txtCep.value = '';
+  txtCidade.value = '';
+  txtUf.value = '';
 }
 
-function mostrarTelaErro(){
-    limpar();
-    formulario.style = 'background-color: red';
-    alert('CEP informado não existe');
+async function pesquisar(){
+  fetch('http://localhost:8080/api/fabricantes')
+  .then(resultado => resultado.json())
+  .then(json => {
+      preencherTabela(json);
+  });
 }
 
-function validarCEP(cepFormatado){
-    var fieldsetCep = document.getElementById('fieldset-consulta-cep');
-    var cepValido = false;
-    if(cepFormatado.length == 8){
-        fieldsetCep.style = 'background-color: grey';
-        cepValido = true;
-    }else{
-        fieldsetCep.style = 'background-color: yellow';
-    }
-
-    return cepValido;
+function limparTabela(){
+  document.getElementById("corpoTabela").innerHTML = "";
 }
+
+function preencherTabela(jsonFabricantes){
+  this.limparTabela();
+  // <TH>#</TH>
+  //                     <TH>NOME</TH>
+  //                     <TH>CNPJ</TH>
+  //                     <TH>ENDEREÇO</TH>
+  var corpoTabela = document.getElementById('corpoTabela');
+
+  for(let i = 0; i < jsonFabricantes.length; i++){
+      let novaLinha = corpoTabela.insertRow();
+
+      let celulaId = novaLinha.insertCell();
+      celulaId.innerText = jsonFabricantes[i].id;
+
+      let celulaNome = novaLinha.insertCell();
+      celulaNome.innerText = jsonFabricantes[i].nome;
+
+      let celulaCnpj = novaLinha.insertCell();
+      celulaCnpj.innerText = jsonFabricantes[i].cnpj;
+
+      let celulaEndereco = novaLinha.insertCell();
+      celulaEndereco.innerText = jsonFabricantes[i].cidade
+                              + ' - ' + jsonFabricantes[i].uf
+                              + ' (' + jsonFabricantes[i].cep + ')';
+  }
+}
+
+buscarTodosProdutos();

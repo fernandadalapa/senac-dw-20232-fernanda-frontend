@@ -1,7 +1,7 @@
 /* Importação de fonte */
 @import url("https://fonts.googleapis.com/css2?family=Kalam&family=Lato:wght@700&display=swap");
 
-/* 
+/*
 Referências:
 https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
 https://www.alura.com.br/artigos/css-guia-do-flexbox
@@ -30,9 +30,9 @@ body {
 .cabecalho{
     display: block;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: flex-end;
-    height: 10vh; 
+    height: 10vh;
 }
 
 .cabecalho__titulo{
@@ -60,7 +60,7 @@ h2 {
     padding: 0px;
     margin: 0px;
     display: flex;
-}   
+}
 
 .section__menu{
     width: 10%;
@@ -156,14 +156,14 @@ div {
     margin: 16px auto;
     font-family: var(--fonte-texto);
     font-weight: 400;
-    
+
 }
 
 .rodape{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     height: 10vh;
 }
 
@@ -171,4 +171,10 @@ div {
     font-family: var(--fonte-texto);
     font-weight: 400;
     font-size: 14px;
+}
+
+table{
+  text-align: center;
+  border-width: 2px;
+  border: #F1F6F9;
 }

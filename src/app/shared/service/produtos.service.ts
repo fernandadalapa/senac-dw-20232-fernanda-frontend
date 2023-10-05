@@ -2,7 +2,7 @@ import { Produto } from './produto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Produto } from './model/produto';
+import { Produto } from './produto';
 import { ProdutoSeletor } from '../model/seletor/produto.seletor';
 
 

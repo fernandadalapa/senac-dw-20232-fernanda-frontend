@@ -1,3 +1,4 @@
+import { ProdutosService } from './../../shared/service/produtos.service';
 import { ProdutoSeletor } from './../../shared/model/seletor/produto.seletor';
 import { ProdutoService } from './../../shared/service/produto.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ export class ProdutoListagemComponent implements OnInit {
   public produtos: Array<Produto> = new Array();
   public seletor: ProdutoSeletor = new ProdutoSeletor();
 
-  constructor(private produtoService: ProdutoService){
+  constructor(private ProdutosService: ProdutoService){
   }
 
   ngOnInit(): void {

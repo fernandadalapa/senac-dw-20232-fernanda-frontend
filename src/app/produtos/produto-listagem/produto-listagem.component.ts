@@ -1,4 +1,13 @@
-import { ProdutosService } from './../../shared/service/produtos.service';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-produto-listagem',
+  templateUrl: './produto-listagem.component.html',
+  styleUrls: ['./produto-listagem.component.scss']
+})
+export class ProdutoListagemComponent {
+
+}
 import { ProdutoSeletor } from './../../shared/model/seletor/produto.seletor';
 import { ProdutoService } from './../../shared/service/produto.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,12 +24,23 @@ export class ProdutoListagemComponent implements OnInit {
   public produtos: Array<Produto> = new Array();
   public seletor: ProdutoSeletor = new ProdutoSeletor();
 
-  constructor(private ProdutosService: ProdutoService){
+  constructor(private produtoService: ProdutoService){
   }
 
   ngOnInit(): void {
     //Similar ao método main() do Java
     this.buscarProdutos();
+  }
+
+  pesquisar(){
+    this.produtoService.listarComSeletor(this.seletor).subscribe(
+      resultado => {
+        this.produtos = resultado;
+      },
+      erro => {
+        console.log('Erro ao buscar produtos', erro);
+      }
+    );
   }
 
   buscarProdutos(){
@@ -32,6 +52,10 @@ export class ProdutoListagemComponent implements OnInit {
         console.log('Erro ao buscar produtos', erro);
       }
     );
+  }
+
+  limpar(){
+    this.seletor = new ProdutoSeletor();
   }
 
   editar(id: number){

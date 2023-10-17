@@ -13,6 +13,7 @@ import { ProdutoListagemComponent } from './produtos/produto-listagem/produto-li
   declarations: [
     AppComponent,
 
+
     ProdutoDetalheComponent,
     ProdutoListagemComponent
   ],
@@ -20,7 +21,7 @@ import { ProdutoListagemComponent } from './produtos/produto-listagem/produto-li
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
